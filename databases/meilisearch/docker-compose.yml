@@ -1,0 +1,19 @@
+# More config  https://www.meilisearch.com/docs/learn/configuration/instance_options
+
+version: '3.9'
+services:
+  meilisearch:
+    container_name: meilisearch
+    image: 'getmeili/meilisearch:v1.7'
+    environment:
+      - MEILI_ENV=development
+    volumes:
+      - /opt/docker/databases/meilisearch/data/:/meili_data
+    ports:
+      - "7700:7700"
+    networks:
+      - backend
+    restart: unless-stopped
+networks:
+  backend:
+    external: true

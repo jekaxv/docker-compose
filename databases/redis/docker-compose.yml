@@ -1,0 +1,17 @@
+version: "3.9"
+services:
+  redis:
+    image: redis:latest
+    container_name: redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - /opt/docker/databases/redis/conf:/usr/local/etc/redis
+      - /opt/docker/databases/redis/data:/data
+    restart: always
+    networks:
+      - backend
+
+networks:
+  backend:
+    external: true

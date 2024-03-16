@@ -1,0 +1,21 @@
+version: '3.9'
+services:
+  wekan:
+    image: wekanteam/wekan:v7.38
+    container_name: wekan-app
+    restart: unless-stopped
+    networks:
+      - backend
+    ports:
+      - "8080:8080"
+    environment:
+      - WRITABLE_PATH=/data
+      - MONGO_URL=mongodb://<user>:<pass>@mongo:27017/wekan?authSource=admin
+      - ROOT_URL=http://localhost
+      - WITH_API=true
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /opt/docker/manager/wekan/data:/data:rw
+networks:
+  backend:
+    external: true

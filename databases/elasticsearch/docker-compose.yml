@@ -1,0 +1,26 @@
+version: "3.9"
+
+services:
+  es01:
+    container_name: es01
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.12.2
+    volumes:
+      - /opt/docker/databases/elasticsearch/data:/usr/share/elasticsearch/data
+    ports:
+      - "9200:9200"
+    environment:
+      - node.name=es01
+      - TZ=Asia/Shanghai
+      - discovery.type=single-node
+      - ELASTIC_PASSWORD=root
+      - xpack.security.enabled=false
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    networks:
+      - backend
+    restart: unless-stopped
+networks:
+  backend:
+    external: true

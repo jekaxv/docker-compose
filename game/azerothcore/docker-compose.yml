@@ -7,7 +7,7 @@ services:
     ports:
       - '8085:8085'
     volumes:
-      - /opt/docker/services/ac/data:/data/azerothcore
+      - /opt/docker/services/ac/modules:/data/azerothcore/modules/custom
     networks:
       - home-net
 networks:
